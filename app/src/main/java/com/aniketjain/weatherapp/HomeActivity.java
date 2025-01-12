@@ -224,9 +224,9 @@ public class HomeActivity extends AppCompatActivity {
                 sunset = response.getJSONArray("daily").getJSONObject(0).getLong("sunset");
                 description = response.getJSONObject("current").getJSONArray("weather").getJSONObject(0).getString("main");
 
-                temperature = String.valueOf(Math.round(response.getJSONObject("current").getDouble("temp") - 273.15));
-                min_temperature = String.format("%.0f", response.getJSONArray("daily").getJSONObject(0).getJSONObject("temp").getDouble("min") - 273.15);
-                max_temperature = String.format("%.0f", response.getJSONArray("daily").getJSONObject(0).getJSONObject("temp").getDouble("max") - 273.15);
+                temperature = String.valueOf(Math.round((response.getJSONObject("current").getDouble("temp") - 273.15) * 9/5 + 32));
+                min_temperature = String.format("%.0f", (response.getJSONArray("daily").getJSONObject(0).getJSONObject("temp").getDouble("min") - 273.15) * 9/5 + 32);
+                max_temperature = String.format("%.0f", (response.getJSONArray("daily").getJSONObject(0).getJSONObject("temp").getDouble("max") - 273.15) * 9/5 + 32);
                 pressure = response.getJSONArray("daily").getJSONObject(0).getString("pressure");
                 wind_speed = response.getJSONArray("daily").getJSONObject(0).getString("wind_speed");
                 humidity = response.getJSONArray("daily").getJSONObject(0).getString("humidity");
@@ -254,9 +254,9 @@ public class HomeActivity extends AppCompatActivity {
                         getPackageName()
                 ));
         binding.layout.conditionDescTv.setText(description);
-        binding.layout.tempTv.setText(temperature + "°C");
-        binding.layout.minTempTv.setText(min_temperature + "°C");
-        binding.layout.maxTempTv.setText(max_temperature + "°C");
+        binding.layout.tempTv.setText(temperature + "°F");
+        binding.layout.minTempTv.setText(min_temperature + "°F");
+        binding.layout.maxTempTv.setText(max_temperature + "°F");
         binding.layout.pressureTv.setText(pressure + " mb");
         binding.layout.windTv.setText(wind_speed + " km/h");
         binding.layout.humidityTv.setText(humidity + "%");
