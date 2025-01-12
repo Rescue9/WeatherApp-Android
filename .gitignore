@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+.androidide
+app/src/main/java/com/aniketjain/weatherapp/location/LocationCord.java
