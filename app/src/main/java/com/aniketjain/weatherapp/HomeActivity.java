@@ -85,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // getting data using internet connection
         getDataUsingNetwork();
+        Log.i("API Key", BuildConfig.MY_API_KEY);
 
     }
 
