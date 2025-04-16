@@ -8,9 +8,8 @@ public class URL {
 
     public URL() {
         link = "https://api.openweathermap.org/data/3.0/onecall?exclude=minutely&lat="
-                + LocationCord.lat + "&lon=" + LocationCord.lon + "&appid=" + LocationCord.API_KEY;
+                + LocationCord.lat + "&lon=" + LocationCord.lon + "&units=imperial" + "&appid=" + LocationCord.API_KEY;
     }
-
     public String getLink() {
         return link;
     }

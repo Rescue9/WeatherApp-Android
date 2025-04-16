@@ -69,8 +69,8 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DayViewHolder>
                 sunrise = response.getJSONArray("daily").getJSONObject(i).getLong("sunrise");
                 sunset = response.getJSONArray("daily").getJSONObject(i).getLong("sunset");
 
-                min = String.format("%.0f", response.getJSONArray("daily").getJSONObject(i).getJSONObject("temp").getDouble("min") - 273.15);
-                max = String.format("%.0f", response.getJSONArray("daily").getJSONObject(i).getJSONObject("temp").getDouble("max") - 273.15);
+                min = String.format("%.0f", response.getJSONArray("daily").getJSONObject(i).getJSONObject("temp").getDouble("min"));
+                max = String.format("%.0f", response.getJSONArray("daily").getJSONObject(i).getJSONObject("temp").getDouble("max"));
                 pressure = response.getJSONArray("daily").getJSONObject(i).getString("pressure");
                 wind_speed = response.getJSONArray("daily").getJSONObject(i).getString("wind_speed");
                 humidity = response.getJSONArray("daily").getJSONObject(i).getString("humidity");
@@ -89,10 +89,10 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DayViewHolder>
     private void updateUI(DayViewHolder holder) {
         String day = UpdateUI.TranslateDay(updated_at, context);
         holder.dTime.setText(day);
-        holder.temp_min.setText(min + "°C");
-        holder.temp_max.setText(max + "°C");
+        holder.temp_min.setText(min + "°F");
+        holder.temp_max.setText(max + "°F");
         holder.pressure.setText(pressure + " mb");
-        holder.wind.setText(wind_speed + " km/h");
+        holder.wind.setText(wind_speed + " mph");
         holder.humidity.setText(humidity + "%");
         holder.icon.setImageResource(
                 context.getResources().getIdentifier(
