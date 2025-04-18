@@ -1,5 +1,6 @@
 package com.aniketjain.weatherapp;
 
+import android.widget.Toast;
 import static com.aniketjain.weatherapp.location.CityFinder.getCityNameUsingNetwork;
 import static com.aniketjain.weatherapp.location.CityFinder.setLongitudeLatitude;
 import static com.aniketjain.weatherapp.network.InternetConnectivity.isInternetConnected;
@@ -31,7 +32,6 @@ import com.android.volley.toolbox.Volley;
 import com.aniketjain.weatherapp.adapter.DaysAdapter;
 import com.aniketjain.weatherapp.databinding.ActivityHomeBinding;
 import com.aniketjain.weatherapp.location.LocationCord;
-import com.aniketjain.weatherapp.toast.Toaster;
 import com.aniketjain.weatherapp.update.UpdateUI;
 import com.aniketjain.weatherapp.url.URL;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -225,7 +225,7 @@ public class HomeActivity extends AppCompatActivity {
     private void checkConnection() {
         if (!isInternetConnected(this)) {
             hideMainLayout();
-            Toaster.errorToast(this, "Please check your internet connection");
+            Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
         } else {
             hideProgressBar();
             getDataUsingNetwork();
@@ -237,10 +237,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toaster.successToast(this, "Permission Granted");
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
                 getDataUsingNetwork();
             } else {
-                Toaster.errorToast(this, "Permission Denied");
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -262,7 +262,7 @@ public class HomeActivity extends AppCompatActivity {
                 try {
                     appUpdateManager.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, HomeActivity.this, WEATHER_FORECAST_APP_UPDATE_REQ_CODE);
                 } catch (IntentSender.SendIntentException exception) {
-                    Toaster.errorToast(this, "Update Failed");
+                    Toast.makeText(this, "Update failed");
                 }
             }
         });
