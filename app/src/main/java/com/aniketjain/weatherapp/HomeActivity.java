@@ -74,8 +74,9 @@ public class HomeActivity extends AppCompatActivity {
         // set navigation bar color
         setNavigationBarColor();
 
+        //FIXME: will reimplement after functional code changes
         //check for new app update
-        checkUpdate();
+        //checkUpdate();
 
         // set refresh color schemes
         setRefreshLayoutColor();
@@ -93,13 +94,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_EXTRA_INPUT) {
-            if (resultCode == RESULT_OK && data != null) {
-                ArrayList<String> arrayList = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                binding.layout.cityEt.setText(Objects.requireNonNull(arrayList).get(0).toUpperCase());
-                searchCity(binding.layout.cityEt.getText().toString());
-            }
-        }
     }
 
 
@@ -123,24 +117,6 @@ public class HomeActivity extends AppCompatActivity {
             hideKeyboard(view);
             return false;
         });
-        binding.layout.searchBarIv.setOnClickListener(view -> searchCity(binding.layout.cityEt.getText().toString()));
-        binding.layout.searchBarIv.setOnTouchListener((view, motionEvent) -> {
-            hideKeyboard(view);
-            return false;
-        });
-        binding.layout.cityEt.setOnEditorActionListener((textView, i, keyEvent) -> {
-            if (i == EditorInfo.IME_ACTION_GO) {
-                searchCity(binding.layout.cityEt.getText().toString());
-                hideKeyboard(textView);
-                return true;
-            }
-            return false;
-        });
-        binding.layout.cityEt.setOnFocusChangeListener((view, b) -> {
-            if (!b) {
-                hideKeyboard(view);
-            }
-        });
         binding.mainRefreshLayout.setOnRefreshListener(() -> {
             checkConnection();
             Log.i("refresh", "Refresh Done.");
@@ -156,15 +132,7 @@ public class HomeActivity extends AppCompatActivity {
                 getResources().getColor(R.color.navBarColor)
         );
     }
-
-    private void searchCity(String cityName) {
-        if (cityName == null || cityName.isEmpty()) {
-            Toaster.errorToast(this, "Please enter the city name");
-        } else {
-            setLatitudeLongitudeUsingCity(cityName);
-        }
-    }
-
+        
     private void getDataUsingNetwork() {
         FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(this);
         //check permission
@@ -179,24 +147,7 @@ public class HomeActivity extends AppCompatActivity {
             });
         }
     }
-
-    private void setLatitudeLongitudeUsingCity(String cityName) {
-        URL.setCity_url(cityName);
-        RequestQueue requestQueue = Volley.newRequestQueue(HomeActivity.this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL.getCity_url(), null, response -> {
-            try {
-                LocationCord.lat = response.getJSONObject("coord").getString("lat");
-                LocationCord.lon = response.getJSONObject("coord").getString("lon");
-                getTodayWeatherInfo(cityName);
-                // After the successfully city search the cityEt(editText) is Empty.
-                binding.layout.cityEt.setText("");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> Toaster.errorToast(this, "Please enter the correct city name"));
-        requestQueue.add(jsonObjectRequest);
-    }
-
+    
     @SuppressLint("DefaultLocale")
     private void getTodayWeatherInfo(String name) {
         URL url = new URL();
@@ -301,7 +252,8 @@ public class HomeActivity extends AppCompatActivity {
         checkConnection();
     }
 
-    private void checkUpdate() {
+    // FIXME: will implement when code changes are functional
+    /*private void checkUpdate() {
         AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(HomeActivity.this);
         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
         appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
@@ -314,6 +266,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+    }*/
 
 }
