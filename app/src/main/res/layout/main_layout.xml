@@ -17,7 +17,7 @@
         android:layout_marginHorizontal="32dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/search_parent"

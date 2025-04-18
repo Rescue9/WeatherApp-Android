@@ -1,5 +1,6 @@
 package com.aniketjain.weatherapp.url;
 
+import android.util.Log;
 import com.aniketjain.weatherapp.location.LocationCord;
 
 public class URL {
@@ -17,6 +18,7 @@ public class URL {
 
     public static void setCity_url(String cityName) {
         city_url = "https://api.openweathermap.org/geo/1.0/direct?&q=" + cityName + "&appid=" + LocationCord.API_KEY;
+        Log.i("city_url", city_url);
     }
 
     public static String getCity_url() {
