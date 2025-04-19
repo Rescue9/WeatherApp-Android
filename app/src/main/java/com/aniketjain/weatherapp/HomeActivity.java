@@ -84,6 +84,9 @@ public class HomeActivity extends AppCompatActivity {
         // when user do search and refresh
         listeners();
 
+        // load cached weather data so interface not empty on start
+        loadCachedWeatherData();
+
         // getting data using internet connection
         getDataUsingNetwork();
         Log.i("API Key", BuildConfig.MY_API_KEY);
@@ -171,6 +174,7 @@ public class HomeActivity extends AppCompatActivity {
                 humidity = response.getJSONArray("daily").getJSONObject(0).getString("humidity");
 
                 updateUI();
+                saveWeatherDataLocally();
                 hideProgressBar();
                 setUpDaysRecyclerView();
             } catch (JSONException e) {
@@ -250,6 +254,46 @@ public class HomeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         checkConnection();
+    }
+
+    private void saveWeatherDataLocally() {
+        getSharedPreferences("weatherData", MODE_PRIVATE).edit()
+            .putString("name", name)
+            .putString("updated_at", updated_at)
+            .putString("description", description)
+            .putString("temperature", temperature)
+            .putString("min_temperature", min_temperature)
+            .putString("max_temperature", max_temperature)
+            .putString("pressure", pressure)
+            .putString("wind_speed", wind_speed)
+            .putString("humidity", humidity)
+            .putInt("condition", condition)
+            .putLong("update_time", update_time)
+            .putLong("sunrise", sunrise)
+            .putLong("sunset", sunset)
+            .apply();
+    }
+
+    private void loadCachedWeatherData() {
+        SharedPreferences prefs = getSharedPreferences("weatherData", MODE_PRIVATE);
+        if (prefs.contains("name")) {
+            name = prefs.getString("name", "");
+            updated_at = prefs.getString("updated_at", "");
+            description = prefs.getString("description", "");
+            temperature = prefs.getString("temperature", "");
+            min_temperature = prefs.getString("min_temperature", "");
+            max_temperature = prefs.getString("max_temperature", "");
+            pressure = prefs.getString("pressure", "");
+            wind_speed = prefs.getString("wind_speed", "");
+            humidity = prefs.getString("humidity", "");
+            condition = prefs.getInt("condition", 0);
+            update_time = prefs.getLong("update_time", 0);
+            sunrise = prefs.getLong("sunrise", 0);
+            sunset = prefs.getLong("sunset", 0);
+    
+            updateUI();  // Show cached data immediately
+            hideProgressBar();
+        }
     }
 
     // FIXME: will implement when code changes are functional
