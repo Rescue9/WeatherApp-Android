@@ -1,4 +1,4 @@
-package com.aniketjain.weatherapp.url;
+package com.aniketjain.weatherapp.network;
 
 import android.util.Log;
 import com.aniketjain.weatherapp.location.LocationCord;
