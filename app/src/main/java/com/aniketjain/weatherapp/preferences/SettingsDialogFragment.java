@@ -50,6 +50,6 @@ public class SettingsDialogFragment extends DialogFragment {
 
     @Override
     public int getTheme() {
-        return R.xml.SettingsDialogTheme;
+        return R.style.SettingsDialogTheme;
     }
 }
