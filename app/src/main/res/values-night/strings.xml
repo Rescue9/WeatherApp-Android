@@ -5,5 +5,5 @@
     <string name="wind">WIND</string>
     <string name="humidity">HUMIDITY</string>
     <string name="enter_city_name">ENTER CITY NAME</string>
-    <string name="updated_at">UPDATED AT</string>
+    <string name="updated_at">UPDATED</string>
 </resources>
