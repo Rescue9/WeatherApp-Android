@@ -1,5 +1,6 @@
 package com.aniketjain.weatherapp;
 
+import android.content.SharedPreferences;
 import android.widget.Toast;
 import static com.aniketjain.weatherapp.location.CityFinder.getCityNameUsingNetwork;
 import static com.aniketjain.weatherapp.location.CityFinder.setLongitudeLatitude;
