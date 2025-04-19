@@ -7,6 +7,12 @@
     android:background="@color/mainBGColor"
     tools:context=".HomeActivity">
 
+    <Button
+        android:id="@+id/btn_open_settings"
+        android:text="Open Settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <include
         android:id="@+id/layout"
         layout="@layout/main_layout"

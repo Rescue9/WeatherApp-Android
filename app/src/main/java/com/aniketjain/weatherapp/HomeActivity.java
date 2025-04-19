@@ -1,6 +1,7 @@
 package com.aniketjain.weatherapp;
 
 import android.content.SharedPreferences;
+import android.widget.Button;
 import android.widget.Toast;
 import static com.aniketjain.weatherapp.location.CityFinder.getCityNameUsingNetwork;
 import static com.aniketjain.weatherapp.location.CityFinder.setLongitudeLatitude;
@@ -33,6 +34,7 @@ import com.android.volley.toolbox.Volley;
 import com.aniketjain.weatherapp.adapter.DaysAdapter;
 import com.aniketjain.weatherapp.databinding.ActivityHomeBinding;
 import com.aniketjain.weatherapp.location.LocationCord;
+import com.aniketjain.weatherapp.preferences.SettingsDialogFragment;
 import com.aniketjain.weatherapp.update.UpdateUI;
 import com.aniketjain.weatherapp.network.URL;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -62,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
     private String city = "";
     private final int REQUEST_CODE_EXTRA_INPUT = 101;
     private ActivityHomeBinding binding;
+    private Button openSettingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +94,15 @@ public class HomeActivity extends AppCompatActivity {
         // getting data using internet connection
         getDataUsingNetwork();
         Log.i("API Key", BuildConfig.MY_API_KEY);
+        
+        // Settings dialog launcher
+        binding.btnOpenSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SettingsDialogFragment dialog = new SettingsDialogFragment();
+                dialog.show(getSupportFragmentManager(), "SettingsDialog");
+            }
+        });
 
     }
 
