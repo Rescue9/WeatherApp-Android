@@ -7,9 +7,9 @@
         android:defaultValue="false" />
 
     <EditTextPreference
-        android:key="username"
-        android:title="Username"
-        android:summary="Enter your username"
-        android:defaultValue="User123" />
+        android:key="api_key"
+        android:title="API Key"
+        android:summary="Enter your OpenWEatherMap API Key"
+        android:defaultValue="bd5e378503939ddaee76f12ad7a97608" />
 
 </PreferenceScreen>
