@@ -1,8 +1,8 @@
 package com.aniketjain.weatherapp.preferences;
 
+import com.aniketjain.weatherapp.R;
 
 import android.os.Bundle;
-import androidx.activity.R;
 import androidx.preference.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat{
