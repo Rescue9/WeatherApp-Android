@@ -33,7 +33,7 @@ import com.aniketjain.weatherapp.adapter.DaysAdapter;
 import com.aniketjain.weatherapp.databinding.ActivityHomeBinding;
 import com.aniketjain.weatherapp.location.LocationCord;
 import com.aniketjain.weatherapp.update.UpdateUI;
-import com.aniketjain.weatherapp.url.URL;
+import com.aniketjain.weatherapp.network.URL;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.play.core.appupdate.AppUpdateInfo;

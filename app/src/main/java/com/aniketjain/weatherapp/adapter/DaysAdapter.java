@@ -19,7 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.aniketjain.weatherapp.R;
 import com.aniketjain.weatherapp.update.UpdateUI;
-import com.aniketjain.weatherapp.url.URL;
+import com.aniketjain.weatherapp.network.URL;
 import com.github.ybq.android.spinkit.SpinKitView;
 
 import org.json.JSONException;
